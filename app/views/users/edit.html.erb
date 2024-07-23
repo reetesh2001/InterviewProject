@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+</head>
+<body>
+  <div class="container">
+    <%= form_with(model: @user, local: true) do |form| %>
+      <div>
+       <%= form.label :name %>
+       <%= form.text_field :name %>
+      </div>
+      <div >
+       <%= form.label :email %>
+       <%= form.email_field :email %>
+      </div>
+      <div >
+       <%= form.label :phone_number %>
+       <%= form.telephone_field :phone %>
+      </div>
+      <div >
+       <%= form.submit %>
+      </div>
+    <% end %>
+  </div>
+</body>
+</html>
+
