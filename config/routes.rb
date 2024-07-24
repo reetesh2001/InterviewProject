@@ -9,7 +9,5 @@ Rails.application.routes.draw do
   resources :users do
     resources :candidates
   end
-  # resources :users
-  # resources :candidates
   root to: 'users#index'
 end
