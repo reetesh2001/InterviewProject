@@ -15,7 +15,7 @@ class EmployeesController < ApplicationController
       render :new
     end
   end
-  
+
   def destroy
     @employee = User.find_by(id: params[:id])
     @employee.destroy
