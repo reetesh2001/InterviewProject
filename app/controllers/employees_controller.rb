@@ -1,4 +1,6 @@
 class EmployeesController < ApplicationController
+  before_action :find_employee
+
   def index
     @employees = User.where(role: 'employee')
   end
@@ -17,17 +19,11 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    @employee = User.find_by(id: params[:id])
     @employee.destroy
     redirect_to employee_path 
   end
 
-  def edit
-    @employee = User.find_by(id: params[:id])
-  end
-
   def update
-    @employee = User.find_by(id: params[:id])
     if @employee.update(user_params)
       redirect_to root_path
     else
@@ -36,7 +32,10 @@ class EmployeesController < ApplicationController
   end
 
   private
-  
+  def find_employee
+    @employee = User.find_by(id: params[:id])
+  end
+
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :name, :role, :phone)
   end
