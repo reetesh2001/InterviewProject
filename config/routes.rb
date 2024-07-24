@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #   unlocks: 'users/unlocks'
   }
   
+  resources :employees
   resources :users do
     resources :candidates
   end
