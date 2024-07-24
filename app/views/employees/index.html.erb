@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <%= stylesheet_link_tag 'table' %>
+</head>
+<body>
+  <table>
+    <h1>List of Employee</h1>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Role</th>
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.name %></td>
+          <td><%= employee.email %></td>
+          <td><%= employee.phone %></td>
+          <td><%= employee.role%></td>
+          <td>
+            <%= button_to 'Delete', employee_path(employee), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+          <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>

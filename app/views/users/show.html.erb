@@ -24,5 +24,9 @@
       <%= link_to "Delete", user_path(@user), data: {turbo_method: :delete,turbo_confirm: "Are you sure?"} %>
     </p>
   </div>
+  <div class="option">
+    <%= link_to 'add employee', new_employee_path %>
+    <%= link_to 'Employee', employees_path %>
+  </div>
 </div>
  

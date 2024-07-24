@@ -1,0 +1,23 @@
+<div class="container">
+  <%= form_for @employee, url: employee_path(@employee), method: :patch do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      lllll
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </div>
+
+    <div>
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </div>
+
+    <div>
+      <%= f.submit 'Update Employee' %>
+    </div>
+  <% end %>
+</div>
