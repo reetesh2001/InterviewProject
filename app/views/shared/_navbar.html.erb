@@ -9,7 +9,7 @@
   <nav class="nav">
     <% if user_signed_in? %>
       <li>
-       <%= link_to 'Sign out', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } ,class: 'logout'%>
+       <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
       </li>
     <% else %>
       <li>
