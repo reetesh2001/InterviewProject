@@ -1,0 +1,47 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 5fr; 
+}
+
+.user,
+.option {
+  padding: 20px; 
+  border: 1px solid #ccc;
+  height: 125%;
+  overflow: auto;
+}
+
+.user a {
+  background-color: #25972a;
+  color: white;
+  padding: 8px 30px;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+}
+  
+.user a:hover {
+  background-color:  #a0993b;
+}
+
+.option a {
+  
+  background-color: white;
+  color: rgb(7, 3, 3);
+  padding: 20px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  
+}
+
+.option a:hover {
+  background-color:  #a0993b;
+}

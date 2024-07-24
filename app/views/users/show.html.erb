@@ -1,0 +1,28 @@
+<div class="grid-container">
+  <div class="user">
+    <h1>User Profile</h1>
+    <p>
+      <h2>Name:</h2>
+      <%= @user.name %>
+    </p>
+    <p>
+      <h2>Email:</h2>
+      <%= @user.email%>
+    </p>
+    <p>
+      <h2>Role:</h2>
+      <%= @user.role %>
+    </p>
+    <p>
+      <h2>Phone</h2>
+      <%=@user.phone%>
+    </p>
+    <p style="margin-bottom: 25px;">
+      <%= link_to 'Edit', edit_user_path %>
+    </p>
+    <p>
+      <%= link_to "Delete", user_path(@user), data: {turbo_method: :delete,turbo_confirm: "Are you sure?"} %>
+    </p>
+  </div>
+</div>
+ 
