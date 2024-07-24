@@ -31,7 +31,8 @@
     <div class="option">
       <%= link_to 'add employee', new_employee_path %>
       <%= link_to 'Employee', employees_path %>
-      
+      <%= link_to 'Add Candidate', new_user_candidate_path(@user) %>
+      <%= link_to 'Candidates', user_candidates_path(@user) %>
     </div>
   <% end %>
 </div>
