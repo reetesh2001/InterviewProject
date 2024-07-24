@@ -1,0 +1,39 @@
+<div class="container">
+  <%= form_with(model: [@user, @interview], local: true) do |form| %>
+    <% if current_user && current_user.role == 'employee' %>
+      <div>
+        <%= form.label :status %>
+        <%= form.select :status, options_for_select(["selected", "not selected", "waiting"],@interview.status) %>
+      </div>
+
+      <div>
+        <%= form.label :feedback %>
+        <%= form.text_field :feedback %>
+      </div>
+    <%end%>
+
+    <div>
+      <%= form.label :round %>
+      <%= form.number_field :round %>
+    </div>
+
+    <div>
+      <%= form.label :interview_time %>
+      <%= form.datetime_local_field :interview_time %>
+    </div>
+
+    <div>
+      <%= form.label :Candidate %>
+      <%= form.number_field :candidate_id %>
+    </div>
+
+    <div>
+      <%= form.label :Employee %>
+      <%= form.number_field :employee_id %>
+    </div>
+
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>
