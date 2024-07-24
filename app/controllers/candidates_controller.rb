@@ -19,11 +19,11 @@ class CandidatesController < ApplicationController
   end
 
   def edit
-    @candidate = @user.candidates.find_by(user_id: params[:user_id])
+    @candidate = @user.candidates.find(params[:id])
   end
 
   def update
-    @candidate = @user.candidates.find_by(user_id: params[:user_id])
+    @candidate = @user.candidates.find(params[:id])
     if @candidate.update(candidate_params)
       redirect_to user_candidates_path(@user)
     else
@@ -32,7 +32,7 @@ class CandidatesController < ApplicationController
   end
 
   def destroy
-    @candidate = @user.candidates.find_by(user_id: params[:user_id])
+    @candidate = @user.candidates.find(params[:id])
     @candidate.destroy
     redirect_to user_candidates_path(@user)
   end
