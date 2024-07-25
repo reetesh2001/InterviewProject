@@ -40,7 +40,7 @@ class CandidatesController < ApplicationController
   private
 
   def find_user
-    @user = User.find_by(id: params[:user_id])
+    @user ||= User.find_by(id: params[:user_id])
   end
 
   def candidate_params
