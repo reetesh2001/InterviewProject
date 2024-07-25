@@ -7,6 +7,8 @@ class CreateInterviews < ActiveRecord::Migration[7.1]
       t.datetime :interview_time
       t.integer :user_id
       t.integer :candidate_id
+      t.integer :employee_id
+
       t.timestamps
     end
   end
