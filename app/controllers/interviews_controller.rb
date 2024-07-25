@@ -1,5 +1,7 @@
 class InterviewsController < ApplicationController
+  include CandidatesHelper
   before_action :find_user
+  before_action :fetch_candidates_and_employees, only: [:new, :edit]
 
   def index
     @interviews = @user.interviews.all
@@ -9,12 +11,12 @@ class InterviewsController < ApplicationController
     @interview = @user.interviews.build
   end
   
-  
   def create
     @interview = @user.interviews.build(interview_params)
     if @interview.save
       redirect_to user_path(@user)
     else
+      fetch_candidates_and_employees
       render :new
     end
   end
@@ -44,7 +46,16 @@ class InterviewsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
   end
 
+  # def fetch_candidates
+  #   @candidates = Candidate.all
+  # end
+
+  def fetch_candidates_and_employees
+    @candidates = Candidate.all
+    @employees = User.where(role: 'employee')
+  end
+
   def interview_params
-    params.require(:interview).permit(:status, :feedback, :round, :interview_time, :candidate_id, :hr_id)
+    params.require(:interview).permit(:status, :feedback, :round, :interview_time, :candidate_id, :hr_id, :employee_id)
   end
 end

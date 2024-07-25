@@ -24,13 +24,14 @@
 
     <div>
       <%= form.label :Candidate %>
-      <%= form.number_field :candidate_id %>
+      <%= form.select :candidate_id, @candidates.map { |c| [candidate_option_text(c), c.id] }, selected: @interview.candidate_id %>
     </div>
 
     <div>
       <%= form.label :Employee %>
-      <%= form.number_field :employee_id %>
+      <%= form.select :employee_id, @employees.map { |e| [employee_option_text(e), e.id] }, selected: @interview.employee_id %>
     </div>
+
 
     <div>
       <%= form.submit %>

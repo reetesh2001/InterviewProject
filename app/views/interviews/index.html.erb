@@ -18,13 +18,12 @@
         <td><%= interview.feedback %></td>
         <td><%= interview.round %></td>
         <td><%=interview.interview_time%></td>
-        <td><%= interview.candidate_id %></td>
-        <td><%= interview.employee_id %></td>
+        <td><%= Candidate.find(interview[:candidate_id]).name %></td>
+        <td><%= User.find(interview[:employee_id]).name %></td>
         <td>
           <%= button_to 'Delete', user_interview_path(@user, interview), method: :delete %>
         </td>
         <td><%= link_to 'Edit', edit_user_interview_path(@user, interview) %></td>
-
       </tr>
     <% end %>
   </tbody>

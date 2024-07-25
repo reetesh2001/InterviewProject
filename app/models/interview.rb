@@ -1,4 +1,4 @@
 class Interview < ApplicationRecord
   belongs_to :user
-  has_one :candidate
+  belongs_to :candidate
 end
