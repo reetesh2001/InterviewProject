@@ -1,5 +1,6 @@
 class CandidatesController < ApplicationController
   before_action :find_user
+  before_action :find_candidate
 
   def index
     @candidates = @user.candidates.all
@@ -18,12 +19,7 @@ class CandidatesController < ApplicationController
     end
   end
 
-  def edit
-    @candidate = @user.candidates.find_by(user_id: params[:user_id])
-  end
-
   def update
-    @candidate = @user.candidates.find_by(user_id: params[:user_id])
     if @candidate.update(candidate_params)
       redirect_to user_candidates_path(@user)
     else
@@ -32,7 +28,6 @@ class CandidatesController < ApplicationController
   end
 
   def destroy
-    @candidate = @user.candidates.find_by(user_id: params[:user_id])
     @candidate.destroy
     redirect_to user_candidates_path(@user)
   end
@@ -43,6 +38,10 @@ class CandidatesController < ApplicationController
     @user ||= User.find_by(id: params[:user_id])
   end
 
+  def find_candidate
+    @candidate = @user.candidates.find_by(id: params[:id])
+  end
+    
   def candidate_params
     params.require(:candidate).permit(:name, :email, :phone, :role, :qualification, :college, :experience, :company)
   end
