@@ -5,6 +5,11 @@ class EmployeesController < ApplicationController
     @employees = User.where(role: 'employee')
   end
 
+  def show_interview
+    @employee = User.find(params[:id])
+    @interviews = Interview.where(employee_id: @employee.id)
+  end
+
   def new
     @user = User.new
   end

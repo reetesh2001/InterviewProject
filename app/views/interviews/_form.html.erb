@@ -10,7 +10,7 @@
         <%= form.label :feedback %>
         <%= form.text_field :feedback %>
       </div>
-    <%end%>
+    <%else%>
 
     <div>
       <%= form.label :round %>
@@ -31,7 +31,7 @@
       <%= form.label :Employee %>
       <%= form.select :employee_id, @employees.map { |e| [employee_option_text(e), e.id] }, selected: @interview.employee_id %>
     </div>
-
+    <%end%>
 
     <div>
       <%= form.submit %>

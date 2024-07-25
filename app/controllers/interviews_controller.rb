@@ -6,9 +6,10 @@ class InterviewsController < ApplicationController
   def index
     @interviews = @user.interviews.all
   end
+ 
 
   def new
-    @interview = @user.interviews.build
+    @interview = @user.interviews.new
   end
   
   def create
@@ -28,7 +29,11 @@ class InterviewsController < ApplicationController
   def update
     @interview = @user.interviews.find(params[:id])
     if @interview.update(interview_params)
-      redirect_to user_interviews_path(@user)
+      if current_user.role == "employee"
+        redirect_to show_interview_employee_path(current_user[:id])
+      else
+        redirect_to user_interviews_path(@user)
+      end
     else
       render :edit
     end
@@ -46,16 +51,12 @@ class InterviewsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
   end
 
-  # def fetch_candidates
-  #   @candidates = Candidate.all
-  # end
-
   def fetch_candidates_and_employees
     @candidates = Candidate.all
     @employees = User.where(role: 'employee')
   end
 
   def interview_params
-    params.require(:interview).permit(:status, :feedback, :round, :interview_time, :candidate_id, :hr_id, :employee_id)
+    params.require(:interview).permit(:status, :feedback, :round, :interview_time, :candidate_id, :employee_id)
   end
 end

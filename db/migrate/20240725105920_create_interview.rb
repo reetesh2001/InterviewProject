@@ -1,4 +1,4 @@
-class CreateInterviews < ActiveRecord::Migration[7.1]
+class CreateInterview < ActiveRecord::Migration[7.1]
   def change
     create_table :interviews do |t|
       t.string :status
@@ -8,7 +8,6 @@ class CreateInterviews < ActiveRecord::Migration[7.1]
       t.integer :user_id
       t.integer :candidate_id
       t.integer :employee_id
-
       t.timestamps
     end
   end

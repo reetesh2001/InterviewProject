@@ -26,7 +26,7 @@
   </div>
     <% if current_user.role == 'employee' %>
       <div class="option">
-        employee
+         <%= link_to 'Interviews', show_interview_employee_path(current_user) %>
       </div>
     <% else %>
       <div class="option">
