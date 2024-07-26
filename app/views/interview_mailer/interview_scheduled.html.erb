@@ -1,0 +1,12 @@
+
+<p>Dear <%= @candidate.name %>,</p>
+<p>Your interview for the position of <%= @candidate.role %> has been scheduled.</p>
+
+<p>Details:</p>
+<ul>
+  <li>Date and Time: <%= @interview.interview_time %></li>
+  <li>Interview Round: <%= @interview.round %></li>
+  <li>Feedback: <%= @interview.feedback %></li>
+</ul>
+
+<p>Thank you,</p>
