@@ -1,7 +1,6 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
   font-size: 18px;
   text-align: left;
 }
@@ -31,8 +30,7 @@ td {
 }
 
 button, a {
-  background-color: #009879;
-  color: white;
+  background-color: #268e80;
   padding: 8px 12px;
   text-decoration: none;
   border: none;
@@ -55,4 +53,19 @@ button[data-confirm] {
 
 button[data-confirm]:hover {
   background-color: #c9302c;
+}
+
+.delete{
+ margin-bottom: 15px;
+ padding: 10px;
+ font-size: 15px;
+ color: #dddddd;
+ background-color: #c9302c;
+}
+
+.edit{
+  color: #dddddd;
+}
+.candidate{
+  width: 500px;
 }

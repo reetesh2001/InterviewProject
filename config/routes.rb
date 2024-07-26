@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   #   confirmations: 'users/confirmations',
   #   unlocks: 'users/unlocks'
   }
-  
+
   resources :employees do
     member do
       get 'show_interview'

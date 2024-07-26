@@ -7,19 +7,14 @@ body, html {
 }
 
 .nav {
+  position: sticky;
   background-color: hsl(0, 0%, 20%); 
   padding-right: 40px;
-  padding: 12px;
-  color: #f5f2f2; 
+  list-style-type: none; 
+  padding: 2px;
   display: flex; 
   justify-content: right; 
   align-items: center;
-} 
- 
-.nav a {
-  color: #fff; 
-  text-decoration: none;
-  padding: 8px 12px;
 } 
    
 .nav a:hover {
@@ -53,11 +48,14 @@ body, html {
   background-color: #4caf4c;
   color: white;
   padding: 8px;
-  margin-bottom: 5px;
+  margin: 5px;
+  margin-bottom: 10px;
+  margin-top: 0px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  margin-right: 42px;
 }
 
 .logout:hover{

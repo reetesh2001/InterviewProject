@@ -49,11 +49,12 @@ class InterviewsController < ApplicationController
   private
 
   def find_user
-    @user = User.find_by(id: params[:user_id])
+    @user ||= User.find_by(id: params[:user_id])
   end
 
   def fetch_candidates_and_employees
-    @candidates = Candidate.all
+    candidates_empty_status = Interview.where(status: nil).pluck(:candidate_id)
+    @candidates = Candidate.where.not(id: candidates_empty_status )
     @employees = User.where(role: 'employee')
   end
 
