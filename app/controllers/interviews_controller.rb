@@ -24,11 +24,11 @@ class InterviewsController < ApplicationController
   end
 
   def edit
-    @interview = @user.interviews.find(params[:id])
+    @interview = @user.interviews.find_by(id: params[:id])
   end
 
   def update
-    @interview = @user.interviews.find(params[:id])
+    @interview = @user.interviews.find_by(id: params[:id])
     if @interview.update(interview_params)
       if current_user.role == "employee"
         redirect_to show_interview_employee_path(current_user[:id])
@@ -41,7 +41,7 @@ class InterviewsController < ApplicationController
   end
 
   def destroy
-    @interview = @user.interviews.find(params[:id])
+    @interview = @user.interviews.find_by(id: params[:id])
     @interview.destroy
     redirect_to user_interviews_path(@user)
   end
