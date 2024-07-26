@@ -14,10 +14,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   debugger
-  #   super
-  # end
+  def destroy
+    reset_session
+    super
+  end
  
   # protected
 

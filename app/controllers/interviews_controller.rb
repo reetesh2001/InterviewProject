@@ -7,18 +7,19 @@ class InterviewsController < ApplicationController
     @interviews = @user.interviews.all
   end
  
-
   def new
     @interview = @user.interviews.new
   end
-  
+
   def create
-    @interview = @user.interviews.build(interview_params)
-    if @interview.save
-      redirect_to user_path(@user)
-    else
-      fetch_candidates_and_employees
-      render :new
+    existing_interview = Interview.find_by(candidate_id: interview_params[:candidate_id])
+    if !existing_interview || existing_interview.status.present?
+      @interview = @user.interviews.build(interview_params)
+      if @interview.save
+        redirect_to user_path(@user)
+      else
+        render :new
+      end
     end
   end
 

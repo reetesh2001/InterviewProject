@@ -2,24 +2,24 @@
 <table>
   <thead>
     <tr>
-      <th>Status</th>
-      <th>Feedback</th>
-      <th>Round</th>
-      <th>Interview_time</th>
       <th>Candidate</th>
       <th>Employee</th>
+      <th>Round</th>
+      <th>Interview_time</th>
+      <th>Status</th>
+      <th>Feedback</th>
       <th colspan="2">Action</th>
     </tr>
   </thead>
   <tbody>
     <% @interviews.each do |interview| %>
       <tr>
-        <td><%= interview.status %></td>
-        <td><%= interview.feedback %></td>
-        <td><%= interview.round %></td>
-        <td><%=interview.interview_time%></td>
         <td><%= Candidate.find(interview[:candidate_id]).name %></td>
         <td><%= User.find(interview[:employee_id]).name %></td>
+        <td><%= interview.round %></td>
+        <td><%=interview.interview_time%></td>
+        <td><%= interview.status %></td>
+        <td><%= interview.feedback %></td>
         <td>
           <%= button_to 'Delete', user_interview_path(@user, interview), method: :delete %>
         </td>
