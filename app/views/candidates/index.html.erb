@@ -1,0 +1,36 @@
+<h1>Candidates</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Role</th>
+      <th>HR ID</th>
+      <th>Qualification</th>
+      <th>College</th>
+      <th>Experience</th>
+      <th>Company</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @candidates.each do |candidate| %>
+      <tr>
+        <td><%= candidate.name %></td>
+        <td><%= candidate.email %></td>
+        <td><%= candidate.phone %></td>
+        <td><%= candidate.role %></td>
+        <td><%= candidate.user_id %></td>
+        <td><%= candidate.qualification %></td>
+        <td><%= candidate.college %></td>
+        <td><%= candidate.experience %></td>
+        <td><%= candidate.company %></td>
+        <td>
+          <%= button_to 'Delete', user_candidate_path(@user, candidate), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Edit', edit_user_candidate_path(@user,candidate) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

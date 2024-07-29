@@ -1,0 +1,48 @@
+<h1 id="candidate">Add Candidate</h1>
+<div class="container">
+  <%= form_with(model: [@user, @candidate], local: true) do |form| %>
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :email %>
+      <%= form.email_field :email, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :phone %>
+      <%= form.text_field :phone, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :role %>
+      <%= form.text_field :role %>
+    </div>
+
+    <div>
+      <%= form.label :qualification %>
+      <%= form.text_field :qualification %>
+    </div>
+
+    <div>
+      <%= form.label :college %>
+      <%= form.text_field :college %>
+    </div>
+
+    <div>
+      <%= form.label :experience %>
+      <%= form.number_field :experience %>
+    </div>
+
+    <div>
+      <%= form.label :company %>
+      <%= form.text_field :company %>
+    </div>
+
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>

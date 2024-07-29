@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   #   unlocks: 'users/unlocks'
   }
   
-  resources :users
   resources :employees
+  resources :users do
+    resources :candidates
+  end
   root to: 'users#index'
 end
