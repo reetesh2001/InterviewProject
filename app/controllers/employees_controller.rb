@@ -2,16 +2,16 @@ class EmployeesController < ApplicationController
   before_action :find_employee
 
   def index
-    @employees = User.where(role: 'employee')
+    @employees = Employee.where(role: 'employee')
   end
 
   def new
-    @user = User.new
+    @employee = Employee.new
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save!
+    @employee = Employee.new(user_params)
+    if @employee.save!
       redirect_to user_path(current_user) 
     else
       render :new
@@ -33,10 +33,10 @@ class EmployeesController < ApplicationController
 
   private
   def find_employee
-    @employee = User.find_by(id: params[:id])
+    @employee ||= Employee.find_by(id: params[:id])
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :role, :phone)
+    params.require(:employee).permit(:email, :password, :password_confirmation, :name, :role, :phone)
   end
 end
