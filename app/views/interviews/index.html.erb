@@ -4,7 +4,8 @@
       <th>Candidate</th>
       <th>Employee</th>
       <th>Round</th>
-      <th>Interview_time</th>
+      <th>Start_Interview_time</th>
+      <th>End_Interview_time</th>
       <th>Status</th>
       <th>Feedback</th>
       <th colspan="2">Action</th>
@@ -17,6 +18,7 @@
         <td><%= User.find(interview[:employee_id]).name %></td>
         <td><%= interview.round %></td>
         <td><%=interview.interview_time%></td>
+        <td><%=interview.end_interview_time%></td>
         <td><%= interview.status %></td>
         <td><%= interview.feedback %></td>
         <td>

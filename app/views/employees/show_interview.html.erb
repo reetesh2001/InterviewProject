@@ -1,24 +1,26 @@
 <table>
   <thead>
     <tr>
+      <th>Candidate</th>
+      <th>User</th>
+      <th>Round</th>
+      <th>Start Time</th>
+      <th>End Time</th>
       <th>Status</th>
       <th>Feedback</th>
-      <th>Round</th>
-      <th>Interview Time</th>
-      <th>User</th>
-      <th>Candidate</th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody>
     <% @interviews.each do |interview| %>
       <tr>
-        <td><%= interview.status %></td>
-        <td><%= interview.feedback %></td>
-        <td><%= interview.round %></td>
-        <td><%= interview.interview_time %></td>
         <td><%= interview.user.name %></td>
         <td><%= interview.candidate.name %></td>
+        <td><%= interview.round %></td>
+        <td><%= interview.interview_time %></td>
+        <td><%= interview.end_interview_time %></td>
+        <td><%= interview.status %></td>
+        <td><%= interview.feedback %></td>
         <td><%= link_to 'Edit', edit_user_interview_path(interview.user, interview) %></td>
       </tr>
     <% end %>
