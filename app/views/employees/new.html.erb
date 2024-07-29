@@ -1,10 +1,7 @@
 <div class="container">
-  <%= form_for @user, url: employees_path, method: :post do |f| %>
+  <%= form_for @employee, url: employees_path, method: :post do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
-
-    <%= f.label :role %>
-    <%= f.text_field :role, value: 'employee' %>
 
     <%= f.label :phone %>
     <%= f.text_field :phone %>
