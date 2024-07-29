@@ -11,6 +11,7 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(user_params)
+    @employee.role = "employee"
     if @employee.save!
       redirect_to user_path(current_user) 
     else
@@ -37,6 +38,6 @@ class EmployeesController < ApplicationController
   end
 
   def user_params
-    params.require(:employee).permit(:email, :password, :password_confirmation, :name, :role, :phone)
+    params.require(:employee).permit(:email, :password, :password_confirmation, :name, :phone)
   end
 end
