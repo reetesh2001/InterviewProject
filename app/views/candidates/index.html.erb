@@ -1,3 +1,11 @@
+<%= form_with url: import_user_candidates_path(@user), local: true, multipart: true do |form| %>
+  <div class="form-group">
+    <%= form.label :file %>
+    <%= form.file_field :file %>
+  </div>
+  <%= form.submit "Import Candidates" %>
+<% end %>
+
 <table>
   <thead style="width: 100%;">
     <tr>
@@ -28,7 +36,7 @@
           <%= button_to 'Delete', user_candidate_path(@user, candidate), method: :delete, data: { confirm: 'Are you sure?' },class: "delete" %>
         </td>
         <td>
-            <%= link_to 'Edit', edit_user_candidate_path(@user,candidate),class: "edit" %>
+          <%= link_to 'Edit', edit_user_candidate_path(@user,candidate),class: "edit" %>
         </td>
       </tr>
     <% end %>

@@ -37,6 +37,16 @@ class CandidatesController < ApplicationController
     redirect_to user_candidates_path(@user)
   end
 
+  def import
+    if params[:file].nil?
+      redirect_to user_candidates_path(@user)
+    else
+      @user.files.attach(params[:file])
+      CandidateImporter.new(@user.files.last, @user).import
+      redirect_to user_candidates_path(@user)
+    end
+  end
+
   private
 
   def find_user

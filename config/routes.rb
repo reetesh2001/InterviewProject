@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     end
   end
   resources :users do
-    resources :candidates
+    resources :candidates do
+      collection { post :import }
+    end
     resources :interviews
   end
   root to: 'users#index'
