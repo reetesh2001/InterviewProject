@@ -13,7 +13,9 @@ class InterviewsController < ApplicationController
 
   def create
     existing_interview = Interview.find_by(candidate_id: interview_params[:candidate_id])
+    
     if !existing_interview || existing_interview.status.present?
+     
       @interview = @user.interviews.build(interview_params)
       if @interview.save
         redirect_to user_path(@user)
@@ -25,10 +27,12 @@ class InterviewsController < ApplicationController
 
   def edit
     @interview = @user.interviews.find_by(id: params[:id])
+    set_interview_round(@interview)
   end
 
   def update
     @interview = @user.interviews.find_by(id: params[:id])
+    
     if @interview.update(interview_params)
       if current_user.role == "employee"
         redirect_to show_interview_employee_path(current_user[:id])
