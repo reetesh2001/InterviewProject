@@ -33,11 +33,11 @@
 
     <div>
       <%= form.label :experience %>
-      <%= form.number_field :experience %>
+      <%= form.number_field :experience, min: 0 %>
     </div>
 
     <div>
-      <%= form.label :company %>
+      <%= form.label :previous_company %>
       <%= form.text_field :company %>
     </div>
 

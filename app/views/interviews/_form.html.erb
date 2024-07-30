@@ -14,7 +14,7 @@
 
     <div>
       <%= form.label :round %>
-      <%= form.number_field :round %>
+      <%= form.select :round, Interview.rounds.keys.map { |r| [r.humanize, r] }, selected: @interview.round %>
     </div>
 
     <div>
