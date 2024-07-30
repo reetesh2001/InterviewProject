@@ -4,9 +4,13 @@ class InterviewsController < ApplicationController
   before_action :fetch_candidates_and_employees, only: [:new, :edit]
 
   def index
-    @interviews = @user.interviews.all
+    if params[:status]
+      @interviews = @user.interviews.where(status: params[:status])
+    else
+      @interviews = @user.interviews.all
+    end
   end
- 
+
   def new
     @interview = @user.interviews.new
   end
@@ -15,13 +19,14 @@ class InterviewsController < ApplicationController
     existing_interview = Interview.find_by(candidate_id: interview_params[:candidate_id])
       if !existing_interview
         @interview = @user.interviews.build(interview_params)
-      if @interview.save
-        redirect_to user_path(@user)
-      else
-        fetch_candidates_and_employees
-        render :new
+        @interview.status = "pending"
+        if @interview.save
+          redirect_to user_path(@user)
+        else
+          fetch_candidates_and_employees
+          render :new
+        end
       end
-    end
   end
 
   def edit
@@ -64,9 +69,9 @@ class InterviewsController < ApplicationController
   end
 
   def fetch_candidates_and_employees
-      interviewed_candidate_ids = Interview.pluck(:candidate_id)
-      @candidates = Candidate.where.not(id: interviewed_candidate_ids)
-      @employees = User.where(role: 'employee')
+    interviewed_candidate_ids = Interview.pluck(:candidate_id)
+    @candidates = Candidate.where.not(id: interviewed_candidate_ids)
+    @employees = User.where(role: 'employee')
   end
 
   def next_interview_round(current_round)

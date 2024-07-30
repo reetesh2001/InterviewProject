@@ -3,7 +3,7 @@
     <% if current_user && current_user.role == 'employee' %>
       <div>
         <%= form.label :status %>
-        <%= form.select :status, options_for_select(["selected", "not selected", "waiting"],@interview.status) %>
+        <%= form.select :status, options_for_select(["Pending", "Selected", "Not selected"],@interview.status) %>
       </div>
 
       <div>

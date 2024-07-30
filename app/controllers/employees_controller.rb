@@ -7,7 +7,11 @@ class EmployeesController < ApplicationController
 
   def show_interview
     @employee = User.find(params[:id])
-    @interviews = Interview.where(employee_id: @employee.id)
+    if params[:status]
+      @interviews = Interview.where(status: params[:status], employee_id: @employee.id)
+    else
+      @interviews = Interview.where(employee_id: @employee.id)
+    end
   end
 
   def new

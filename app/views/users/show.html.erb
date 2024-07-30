@@ -26,7 +26,23 @@
   </div>
   <% if current_user.role == 'employee' %>
     <div class="option">
-        <%= link_to 'Interviews', show_interview_employee_path(current_user) %>
+      <%= link_to 'Interviews', show_interview_employee_path(current_user) %>
+      <div class="interview-status">
+        <div class="status-item">
+          <%= link_to 'Selected Interviews', user_interviews_path(@user, status: "selected") %>
+          <p class="count">Selected: <%= @selected_count %></p>
+        </div>
+        
+        <div class="status-item">
+          <%= link_to 'Interviews seleted', show_interview_employee_path(@user,status:"not selected") %>
+          <p class="count">Not Selected: <%= @not_selected_count %></p>
+        </div>
+        
+        <div class="status-item">
+          <%= link_to 'Pending Interviews', show_interview_employee_path(@user,status: "pending") %>
+          <p class="count">Pending: <%= @pending_count %></p>
+        </div>
+      </div>
     </div>
   <% else %>
     <div class="option">
@@ -36,6 +52,22 @@
       <%= link_to 'Candidates', user_candidates_path(@user) %>
       <%= link_to 'Schedule Interview', new_user_interview_path(@user) %>
       <%= link_to 'Interviews', user_interviews_path(@user) %>
+      <div class="interview-status">
+        <div class="status-item">
+          <%= link_to 'Selected Interviews', user_interviews_path(@user, status: "selected") %>
+          <p class="count">Selected: <%= @selected_count %></p>
+        </div>
+        
+        <div class="status-item">
+          <%= link_to 'Not Selected Interviews', user_interviews_path(@user, status: "not selected") %>
+          <p class="count">Not Selected: <%= @not_selected_count %></p>
+        </div>
+        
+        <div class="status-item">
+          <%= link_to 'Pending Interviews', user_interviews_path(@user, status: "pending") %>
+          <p class="count">Pending: <%= @pending_count %></p>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
