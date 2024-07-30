@@ -22,12 +22,6 @@
       <%= form.datetime_local_field :interview_time %>
     </div>
 
-
-    <div>
-      <%= form.label :end_interview_time %>
-      <%= form.datetime_local_field :end_interview_time %>
-    </div>
-
     <div>
       <%= form.label :Candidate %>
       <%= form.select :candidate_id, @candidates.map { |c| [candidate_option_text(c), c.id] }, selected: @interview.candidate_id %>
