@@ -15,8 +15,8 @@ class InterviewsController < ApplicationController
     existing_interview = Interview.find_by(candidate_id: interview_params[:candidate_id])
     if !existing_interview || existing_interview.status.present?
       @interview = @user.interviews.build(interview_params)
-      if @interview.save
-        InterviewMailer.interview_scheduled(@interview).deliver_now
+      if @interview.save!
+        SendInterviewEmailsJob.perform_later(@interview)
         redirect_to user_path(@user)
       else
         render :new
@@ -43,7 +43,6 @@ class InterviewsController < ApplicationController
 
   def destroy
     @interview = @user.interviews.find_by(id: params[:id])
-    InterviewMailer.interview_canceled(@interview).deliver_now
     @interview.destroy
     redirect_to user_interviews_path(@user)
   end
