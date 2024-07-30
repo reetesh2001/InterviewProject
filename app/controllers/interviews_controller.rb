@@ -17,7 +17,8 @@ class InterviewsController < ApplicationController
     if !existing_interview || existing_interview.status.present?
      
       @interview = @user.interviews.build(interview_params)
-      if @interview.save
+      if @interview.save!
+        SendInterviewEmailsJob.perform_later(@interview)
         redirect_to user_path(@user)
       else
         render :new
