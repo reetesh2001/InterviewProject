@@ -3,20 +3,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-     <%= stylesheet_link_tag 'navbar' %>
+    <%= stylesheet_link_tag 'navbar' %>
 </head>
 <body>
   <nav class="nav">
     <% if user_signed_in? %>
+      <li><%= link_to 'Home', user_path(current_user),  class: 'logout'%></li>
       <li>
         <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'logout' %>
       </li>
     <% else %>
       <li>
-       <%= link_to 'Sign in', new_user_session_path, class: 'nav-link', class: 'logins' %>
-      </li>
-      <li>
-       <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link', class: 'signup' %>
+        <%= link_to 'Sign in', new_user_session_path, class: 'nav-link', class: 'logins' %>
+        <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link', class: 'signup' %>
       </li>
     <% end %>
   </nav>

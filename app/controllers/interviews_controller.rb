@@ -4,35 +4,59 @@ class InterviewsController < ApplicationController
   before_action :fetch_candidates_and_employees, only: [:new, :edit]
 
   def index
-    @interviews = @user.interviews.all
-  end
- 
-  def new
-    @interview = @user.interviews.new
-  end
-
-  def create
-    existing_interview = Interview.find_by(candidate_id: interview_params[:candidate_id])
-    
-    if !existing_interview || existing_interview.status.present?
-     
-      @interview = @user.interviews.build(interview_params)
-      if @interview.save
-        redirect_to user_path(@user)
+    if @user == nil
+      redirect_to user_interviews_path(current_user,status: params[:status])
+    else
+      if params[:status]
+        @interviews = @user.interviews.where(status: params[:status])
       else
-        render :new
+        @interviews = @user.interviews.all
       end
     end
   end
 
+  def new
+    if @user == nil
+      redirect_to new_user_interview_path(current_user)
+    else
+      @interview = @user.interviews.new
+    end
+  end
+
+  def create
+    existing_interview = Interview.find_by(candidate_id: interview_params[:candidate_id])
+      if !existing_interview
+        @interview = @user.interviews.build(interview_params)
+        @interview.status = "Pending"
+        if @interview.save!
+          flash[:notice] = "Interview successfully created."
+          redirect_to user_path(@user)
+        else
+          flash[:notice] = "There was a problem interview the employee."
+          fetch_candidates_and_employees
+          render :new
+        end
+      end
+  end
+
   def edit
     @interview = @user.interviews.find_by(id: params[:id])
-    set_interview_round(@interview)
+    fetch_candidates_and_employees
   end
 
   def update
     @interview = @user.interviews.find_by(id: params[:id])
-    
+
+    if current_user.role == "employee"
+      if params[:interview][:status]=="Selected" && (@interview.status == "Pending" || @interview.status == "Not selected")
+        next_round = next_interview_round(@interview.round)
+        @interview.update(round: next_round)
+      end
+    else
+      @interview.feedback =""
+      @interview.status ="Pending"
+    end
+
     if @interview.update(interview_params)
       if current_user.role == "employee"
         redirect_to show_interview_employee_path(current_user[:id])
@@ -40,14 +64,20 @@ class InterviewsController < ApplicationController
         redirect_to user_interviews_path(@user)
       end
     else
+      flash[:notice] = "There was a problem updating the employee."
       render :edit
     end
   end
 
   def destroy
     @interview = @user.interviews.find_by(id: params[:id])
-    @interview.destroy
-    redirect_to user_interviews_path(@user)
+    if @interview == nil 
+      redirect_to user_interviews_path(current_user,status: params[:status])
+    else
+      @interview.destroy
+      flash[:notice] = "Interview successfully deleted."
+      redirect_to user_interviews_path(@user)
+    end
   end
 
   private
@@ -57,9 +87,18 @@ class InterviewsController < ApplicationController
   end
 
   def fetch_candidates_and_employees
-    candidates_empty_status = Interview.where(status: nil).pluck(:candidate_id)
-    @candidates = Candidate.where.not(id: candidates_empty_status )
+    @candidates = Candidate.all
     @employees = User.where(role: 'employee')
+  end
+
+  def next_interview_round(current_round)
+    return Interview.rounds.keys.first if current_round.nil?
+    if current_round=="HR"
+      return "HR";
+    end
+   
+    next_round_index = Interview.rounds.keys.index(current_round.to_s) + 1
+    Interview.rounds.keys[next_round_index]
   end
 
   def interview_params

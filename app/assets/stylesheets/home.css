@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.home {
+  max-width: 1200px;
+  height:500px; 
+  margin: 0 auto; 
+  padding: 20px; 
+  text-align: center; 
+}
+
+.homepage {
+  font-size: 3em; 
+  color: #333; 
+  margin-top: 40px; 
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.my-image-class {
+  display: block;
+  max-width: 100%; 
+  height: auto;
+  margin: 0 auto;
+}

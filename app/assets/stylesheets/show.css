@@ -40,3 +40,25 @@
 .option a:hover {
   background-color:  #a0993b;
 }
+
+.interview-status {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-item a {
+  text-decoration: none; 
+  
+}
+
+.count {
+  margin: 0;
+  font-weight: bold;
+}

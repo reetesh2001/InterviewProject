@@ -1,6 +1,7 @@
 <h1 id="candidate">Add Candidate</h1>
 <div class="container">
   <%= form_with(model: [@user, @candidate], local: true) do |form| %>
+    
     <div>
       <%= form.label :name %>
       <%= form.text_field :name, required: true %>
@@ -33,11 +34,11 @@
 
     <div>
       <%= form.label :experience %>
-      <%= form.number_field :experience %>
+      <%= form.number_field :experience, min: 0 %>
     </div>
 
     <div>
-      <%= form.label :company %>
+      <%= form.label :previous_company %>
       <%= form.text_field :company %>
     </div>
 

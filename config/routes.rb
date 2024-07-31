@@ -6,15 +6,19 @@ Rails.application.routes.draw do
   #   confirmations: 'users/confirmations',
   #   unlocks: 'users/unlocks'
   }
-
+  
   resources :employees do
     member do
       get 'show_interview'
     end
   end
+
   resources :users do
     resources :candidates
     resources :interviews
   end
+
   root to: 'users#index'
+  
+  match '*path', to: 'errors#not_found', via: :all
 end
