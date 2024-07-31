@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   before_action :find_user
 
   def show
-    @selected_count = Interview.where(status: 'selected').count
-    @not_selected_count = Interview.where(status: 'not selected').count
-    @pending_count = Interview.where(status: 'pending').count
+    @selected_count = Interview.where(status: 'Selected').count
+    @not_selected_count = Interview.where(status: 'Not selected').count
+    @pending_count = Interview.where(status: 'Pending').count
   end
 
   def destroy

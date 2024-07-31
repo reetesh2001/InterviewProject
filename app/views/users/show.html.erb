@@ -31,17 +31,17 @@
         <%= link_to 'Interviews', show_interview_employee_path(current_user) %>
         <div class="interview-status">
           <div class="status-item">
-            <%= link_to 'Selected Interviews', user_interviews_path(@user, status: "selected") %>
+            <%= link_to 'Selected Interviews', user_interviews_path(@user, status: "Selected") %>
             <p class="count">Selected: <%= @selected_count %></p>
           </div>
           
           <div class="status-item">
-            <%= link_to 'Interviews seleted', show_interview_employee_path(@user,status:"not selected") %>
+            <%= link_to 'Interviews seleted', show_interview_employee_path(@user,status:"Not selected") %>
             <p class="count">Not Selected: <%= @not_selected_count %></p>
           </div>
           
           <div class="status-item">
-            <%= link_to 'Pending Interviews', show_interview_employee_path(@user,status: "pending") %>
+            <%= link_to 'Pending Interviews', show_interview_employee_path(@user,status: "Pending") %>
             <p class="count">Pending: <%= @pending_count %></p>
           </div>
         </div>
@@ -56,17 +56,17 @@
         <%= link_to 'Interviews', user_interviews_path(@user) %>
         <div class="interview-status">
           <div class="status-item">
-            <%= link_to 'Selected Interviews', user_interviews_path(@user, status: "selected") %>
+            <%= link_to 'Selected Interviews', user_interviews_path(@user, status: "Selected") %>
             <p class="count">Selected: <%= @selected_count %></p>
           </div>
           
           <div class="status-item">
-            <%= link_to 'Not Selected Interviews', user_interviews_path(@user, status: "not selected") %>
+            <%= link_to 'Not Selected Interviews', user_interviews_path(@user, status: "Not selected") %>
             <p class="count">Not Selected: <%= @not_selected_count %></p>
           </div>
           
           <div class="status-item">
-            <%= link_to 'Pending Interviews', user_interviews_path(@user, status: "pending") %>
+            <%= link_to 'Pending Interviews', user_interviews_path(@user, status: "Pending") %>
             <p class="count">Pending: <%= @pending_count %></p>
           </div>
         </div>

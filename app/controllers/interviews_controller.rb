@@ -4,25 +4,35 @@ class InterviewsController < ApplicationController
   before_action :fetch_candidates_and_employees, only: [:new, :edit]
 
   def index
-    if params[:status]
-      @interviews = @user.interviews.where(status: params[:status])
+    if @user == nil
+      redirect_to user_interviews_path(current_user,status: params[:status])
     else
-      @interviews = @user.interviews.all
+      if params[:status]
+        @interviews = @user.interviews.where(status: params[:status])
+      else
+        @interviews = @user.interviews.all
+      end
     end
   end
 
   def new
-    @interview = @user.interviews.new
+    if @user == nil
+      redirect_to new_user_interview_path(current_user)
+    else
+      @interview = @user.interviews.new
+    end
   end
 
   def create
     existing_interview = Interview.find_by(candidate_id: interview_params[:candidate_id])
       if !existing_interview
         @interview = @user.interviews.build(interview_params)
-        @interview.status = "pending"
-        if @interview.save
+        @interview.status = "Pending"
+        if @interview.save!
+          flash[:notice] = "Interview successfully created."
           redirect_to user_path(@user)
         else
+          flash[:notice] = "There was a problem interview the employee."
           fetch_candidates_and_employees
           render :new
         end
@@ -52,14 +62,20 @@ class InterviewsController < ApplicationController
         redirect_to user_interviews_path(@user)
       end
     else
+      flash[:notice] = "There was a problem updating the employee."
       render :edit
     end
   end
 
   def destroy
     @interview = @user.interviews.find_by(id: params[:id])
-    @interview.destroy
-    redirect_to user_interviews_path(@user)
+    if @interview == nil 
+      redirect_to user_interviews_path(current_user,status: params[:status])
+    else
+      @interview.destroy
+      flash[:notice] = "Interview successfully deleted."
+      redirect_to user_interviews_path(@user)
+    end
   end
 
   private

@@ -1,6 +1,7 @@
 <h1 id="candidate">Add Candidate</h1>
 <div class="container">
   <%= form_with(model: [@user, @candidate], local: true) do |form| %>
+    
     <div>
       <%= form.label :name %>
       <%= form.text_field :name, required: true %>
