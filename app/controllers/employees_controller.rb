@@ -6,7 +6,7 @@ class EmployeesController < ApplicationController
   end
 
   def show_interview
-    @employee = User.find(params[:id])
+    @employee = User.find_by(id: params[:id])
     if params[:status]
       @interviews = Interview.where(status: params[:status], employee_id: @employee.id)
     else

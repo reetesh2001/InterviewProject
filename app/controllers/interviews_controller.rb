@@ -43,12 +43,12 @@ class InterviewsController < ApplicationController
     @interview = @user.interviews.find_by(id: params[:id])
     fetch_candidates_and_employees
   end
- 
+
   def update
     @interview = @user.interviews.find_by(id: params[:id])
 
     if current_user.role == "employee"
-      if params[:interview][:status]=="Selected" 
+      if params[:interview][:status]=="Selected" && (@interview.status == "Pending" || @interview.status == "Not selected")
         next_round = next_interview_round(@interview.round)
         @interview.update(round: next_round)
       end
@@ -87,8 +87,7 @@ class InterviewsController < ApplicationController
   end
 
   def fetch_candidates_and_employees
-    interviewed_candidate_ids = Interview.pluck(:candidate_id)
-    @candidates = Candidate.where(id: interviewed_candidate_ids)
+    @candidates = Candidate.all
     @employees = User.where(role: 'employee')
   end
 
